@@ -1,9 +1,5 @@
 package scrapit
 
-import (
-	"log"
-)
-
 
 type webscraper struct {
 	input chan *Scrapit
