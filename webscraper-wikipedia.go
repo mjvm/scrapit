@@ -157,7 +157,7 @@ func (s *wikiscrapit)extractPageLinks(base_url string) (pages []*wikiscrapit, er
 
 
 
-func (s *wikiscrapit) FetchMe() {
+func (s *wikiscrapit) ScrapMe() {
 	resp, err := http.Get(s.Source)
 	if err != nil {
 		log.Println("error crawling ", s.Source)
@@ -186,11 +186,11 @@ func (s *wikiscraper) GoGoGadget(sc *Scrapit, o chan *Scrapit) {
 	if match := re.FindAllStringSubmatch(wk.Source, -1); match != nil {
 		pages, _ := wk.extractPageLinks(match[0][1])
 		for _, v := range pages {
-			v.FetchMe()
+			v.ScrapMe()
 			o <- &v.Scrapit
 		}
 	} else {
-		wk.FetchMe()
+		wk.ScrapMe()
 		o <- &wk.Scrapit
 	}
 }

@@ -1,0 +1,57 @@
+{
+    "settings": {
+        "analysis": {
+            "filter": {
+                "english_stop": {
+                    "type": "stop",
+                    "stopwords": "_english_"
+                }
+            },
+            "analyzer": {
+                "sentence_search": {
+                    "tokenizer": "standard",
+                    "filter": [
+                        "lowercase"
+                    ]
+                },
+                "sentence_index": {
+                    "tokenizer": "standard",
+                    "filter": [
+                        "lowercase",
+                        "ngram"
+                    ]
+                }
+            },
+            "tokenizer": {
+                "standard": {
+                    "type": "standard"
+                }
+            }
+        },
+        "mappings": {
+            "dynamic": "strict",
+            "_timestamp": {
+                "enabled": "yes",
+                "store": "yes"
+            },
+            "properties": {
+                "Sentence": {
+                    "type": "string",
+                    "similarity": "BM25",
+                    "store": "yes",
+                    "index": "not_analyzed"
+                },
+                "Url": {
+                    "type": "string",
+                    "store": "no",
+                    "index": "not_analyzed"
+                },
+                "Category": {
+                    "type": "string",
+                    "store": "no",
+                    "index": "not_analyzed"
+                }
+            }
+        }
+    }
+}

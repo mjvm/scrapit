@@ -1,25 +1,32 @@
 package scrapit
 
 
-type Fetcher interface {
+type Scraper interface {
 	Initialize() (chan *Scrapit, error)
-	FetchMe(chan*Scrapit)
+	ScrapMe(chan*Scrapit)
+	MatchResource(string) (bool)
 	Uname() string
-	FetcherType() SourceType
+	ScraperType() SourceType
 }
 
-type SourceType uint8
+
+type SourceType uint16
+
 
 const (
 	_ = iota
-	SOURCE_WEBPAGE
+	SOURCE_HTML
+	SOURCE_XML
+	SOURCE_PDF
 )
+
 
 type Scrapit struct {
 	Source    string
 	Tags      map[string]string
 	sentences []string
-	SourceType SourceType
+	sourceType SourceType
+	data []byte
 }
 
 //
