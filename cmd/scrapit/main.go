@@ -28,7 +28,7 @@ func main() {
 	r.AddFetcher(scrapit.HttpFetcher())
 	r.AddScraper(scrapit.WebScraper())
 	r.AddStorage(scrapit.ElasticSearchStorage())
-	//r.AddStorage(scrapit.WordFreqPGStorage("/home/ghfg/projs/go/src/github.com/tust13/scrapit/files/sentence_index.json"))
+	//r.AddStorage(scrapit.WordFreqPGStorage("/home/ghfg/projs/go/src/github.com/tust13/scrapit/files/stop_words.txt"))
 	go fakeEntries(r.InputChan())
 	r.RouteMe()
 }
