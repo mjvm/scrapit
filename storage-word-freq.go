@@ -24,8 +24,7 @@ func createStopWordList(stopwordsFile string) (mapset.Set, error) {
 
 	indexFile, err := os.Open(stopwordsFile)
 	if err != nil {
-		log.Println("Error open stopwords file")
-		return nil, err
+		log.Fatal("Error open stopwords file:", err)
 	}
 	defer indexFile.Close()
 
